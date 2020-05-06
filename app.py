@@ -6,7 +6,7 @@ from resources.user import UserRegister, User, UserLogin, UserLogout, TokenRefre
 from resources.item import Item, ItemList
 from resources.store import Store, StoreList
 from blacklist import BLACKLIST
-from db import db
+
 
 
 app = Flask(__name__)
@@ -20,11 +20,7 @@ app.config['JWT_BLACKLIST_ENABLED'] = True
 app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
 app.secret_key = 'Chetra'
 api = Api(app)
-db.init_app(app)
 
-@app.before_first_request
-def create_tables():
-	db.create_all()
 
 
 jwt = JWTManager(app) 
